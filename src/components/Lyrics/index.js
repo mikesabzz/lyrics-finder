@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Lyrics = () => {
+const Lyrics = (props) => {
     return (
-        <div>Lyrics</div>
+        <div>
+            <button onClick={props.onClick}></button>
+        </div>
     )
 }
 

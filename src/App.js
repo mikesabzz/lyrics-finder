@@ -2,31 +2,32 @@ import React from 'react';
 import SongTitle from './components/SongTitle';
 import Artists from './components/Artists';
 import Lyrics from './components/Lyrics'; 
-// import axios from 'axios';
+import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      artist: {},
-      title: {}
+      artist: "",
+      title: "",
+      lyrics: []
     }
+    this.handleArtistSearch = this.handleArtistSearch.bind(this)
+    this.handleTitleSearch = this.handleTitleSearch.bind(this)
   }
+
+  fetchData = async () => {
+    const url = `https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`
+    const data = await axios.get(url)
+    const { data: {lyrics} } = data
+    this.setState({
+      lyrics
+    })
+  }
+
   componentDidMount() {
-    fetch(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      this.setState({
-        artist: data
-      })
-    })
-    .then(data => {
-      this.setState({
-        title: data
-      })
-    })
+    this.fetchData()
   }
 
   handleArtistSearch = (event) => {
@@ -42,15 +43,15 @@ class App extends React.Component {
     })
   }
 
-  render(){
+  render() {
+    console.log("Lyrics", this.state.lyrics)
     return (
       <div className="App">
-        <Artists artistName={this.state} onChange={this.handleArtistSearch} />
+        <Artists artistName={this.state} onChange={this.handleArtistSearch} /> 
         <SongTitle songTitle={this.state} onChange={this.handleTitleSearch} />   
-        <Lyrics />
+        <Lyrics lyrics={this.state} onClick={this.handleClick} />
       </div>
-    );
+    )
   }
 }
-
 export default App;
