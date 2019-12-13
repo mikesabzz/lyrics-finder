@@ -1,57 +1,47 @@
 import React from 'react';
-import SongTitle from './components/SongTitle';
-import Artists from './components/Artists';
-import Lyrics from './components/Lyrics'; 
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      artist: "",
-      title: "",
-      lyrics: []
+      // artist: [],
+      // title: [],
+      items: {},
+      isLoaded: false
     }
-    this.handleArtistSearch = this.handleArtistSearch.bind(this)
-    this.handleTitleSearch = this.handleTitleSearch.bind(this)
   }
 
-  fetchData = async () => {
-    const url = `https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`
-    const data = await axios.get(url)
-    const { data: {lyrics} } = data
-    this.setState({
-      lyrics
-    })
-  }
 
   componentDidMount() {
-    this.fetchData()
-  }
-
-  handleArtistSearch = (event) => {
-    event.preventDefault()
-    this.setState({
-      artist: event.target.value
-    })
-  }
-  handleTitleSearch = (event) => {
-    event.preventDefault()
-    this.setState({
-      title: event.target.value
-    })
+    fetch('https://api.lyrics.ovh/v1/maroon 5/this love')
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        })
+      })
   }
 
   render() {
-    console.log("Lyrics", this.state.lyrics)
-    return (
-      <div className="App">
-        <Artists artistName={this.state} onChange={this.handleArtistSearch} /> 
-        <SongTitle songTitle={this.state} onChange={this.handleTitleSearch} />   
-        <Lyrics lyrics={this.state} onClick={this.handleClick} />
-      </div>
-    )
+    const { items, isLoaded } = this.state
+    if (!isLoaded) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <div className="App">
+          <ul>
+            {items.map(item => (
+              <div>
+                <h1>{item.lyrics}</h1>
+              </div>
+            ))}
+          </ul>
+        </div>
+      )
+    }
   }
 }
 export default App;
