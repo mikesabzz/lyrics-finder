@@ -7,12 +7,16 @@ class App extends Component {
             loading: false,
             artistLyrics: {},
             error: "",
+            artist: "",
+            title: ""
         }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSecondChange = this.handleSecondChange.bind(this)
     }
     
     componentDidMount() {
         this.setState({ loading: true })
-        fetch('https://api.lyrics.ovh/v1/swedish house mafia/dont you worry child')
+        fetch(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -23,18 +27,36 @@ class App extends Component {
             })
             .catch(error => {
                 console.log(error)
-                this.setState({ error: "no" })
+                this.setState({ error: "Lyrics not Available" })
             })
+    }
+    handleChange(event) {
+        this.setState({artist: event.target.value})
+    }
+    handleSecondChange(event) {
+        this.setState({title: event.target.value})
     }
 
     
     render() {
+        console.log("artist", this.state.artist)
+        console.log("title", this.state.title)
         const { error } = this.state
         const text = this.state.loading ? "loading..." : this.state.artistLyrics.lyrics
         return (
             <div>
                 <p>{text}</p>
                 { error ? <p>{error}</p> : null }
+                <div>
+                    <form>
+                        <label>
+                            <input type="text" value={this.state.artist} onChange={this.handleChange} />
+                        </label>
+                        <label>
+                            <input type="text" value={this.state.title} onChange={this.handleSecondChange} />
+                        </label>
+                    </form>
+                </div>
             </div>
         )
     }
