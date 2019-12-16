@@ -1,79 +1,35 @@
-import React from 'react';
-// import axios from 'axios';
-import './App.css';
-import Lyrics from './components/Lyrics';
+import React, {Component} from "react"
 
-class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      artist: "",
-      title: "",
-      lyrics: "", 
-      displayLyrics: [],
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleTitleChange = this.handleTitleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-  componentDidMount() {
-    fetch(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          lyrics: json,
-        })
-        this.setState({ displayLyrics: this.state.lyrics });
-      })
-    }
-
-    handleChange(event) {
-      this.setState({artist: event.target.value})
-    }
-    handleTitleChange(event) {
-      this.setState({title: event.target.value})
-    }
-    handleSubmit(event) {
-      this.setState({displayLyrics: this.state.lyrics})
-      event.preventDefault()
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            loading: false,
+            artistName: {},
+        }
     }
     
-    renderNames() {
-    const { artist, title } = this.state
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Artist:
-          <input type="text" value={artist} onChange={this.handleChange} />
-        </label>
-        <label>
-          Title:
-          <input type="text" value={title} onChange={this.handleTitleChange} />
-        </label>
-          <input type="submit" value="Submit" />
-      </form>
-    )
-  }
-  renderSongs = () => {
-    return this.state.displayLyrics.map((lyric, index) => {
-      const { lyrics } = lyric;
-      return (
-        <Lyrics
-        key={index}
-        lyrics={lyrics}
-        ></Lyrics>
-      )
-    })
-  }
-  render() {
-    console.log(this.state.lyrics)
-    console.log(this.state.displayLyrics)
-    return (
-      <div>
-        <div>{this.renderSongs()}</div>
-        <div>{this.renderNames()}</div>
-      </div>
-    )
-  }
+    componentDidMount() {
+        this.setState({loading: true})
+        fetch('https://api.lyrics.ovh/v1/maroon 5/girls like you')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    loading: false,
+                    artistName: data
+                })
+            })
+    }
+
+    
+    render() {
+        const text = this.state.loading ? "loading..." : this.state.artistName.lyrics
+        return (
+            <div>
+                <p>{text}</p>
+            </div>
+        )
+    }
 }
-export default App;
+
+export default App
