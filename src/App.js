@@ -5,28 +5,36 @@ class App extends Component {
         super()
         this.state = {
             loading: false,
-            artistName: {},
+            artistLyrics: {},
+            error: "",
         }
     }
     
     componentDidMount() {
-        this.setState({loading: true})
-        fetch('https://api.lyrics.ovh/v1/maroon 5/girls like you')
+        this.setState({ loading: true })
+        fetch('https://api.lyrics.ovh/v1/swedish house mafia/dont you worry child')
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 this.setState({
                     loading: false,
-                    artistName: data
+                    artistLyrics: data
                 })
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({ error: "no" })
             })
     }
 
     
     render() {
-        const text = this.state.loading ? "loading..." : this.state.artistName.lyrics
+        const { error } = this.state
+        const text = this.state.loading ? "loading..." : this.state.artistLyrics.lyrics
         return (
             <div>
                 <p>{text}</p>
+                { error ? <p>{error}</p> : null }
             </div>
         )
     }
