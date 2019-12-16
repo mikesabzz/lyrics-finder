@@ -2,9 +2,7 @@ import React from "react";
 
 const Lyrics = (props) => {
     return (
-        <div>
-            <h2>{props.lyrics}</h2>
-        </div>
+        <div>{props.artistLyrics.lyrics}</div>
     )
 }
 export default Lyrics
