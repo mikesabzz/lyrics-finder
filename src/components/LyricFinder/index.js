@@ -23,7 +23,6 @@ class LyricFinder extends Component {
         this.setState({ loading: true })
         await axios.get(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
             .then(res => {
-                console.log(res)
                 this.setState({
                     loading: false,
                     artistLyrics: res.data
@@ -31,7 +30,7 @@ class LyricFinder extends Component {
             })
             .catch(error => {
                 console.log(error)
-                this.setState({ error: "Lyrics not Available" })
+                this.setState({error: "Lyrics not Available"})
             })
     }
     handleChange(event) {
@@ -52,6 +51,7 @@ class LyricFinder extends Component {
     }
 
     render() {
+        const {error}=this.state
         return (
             <div>
                 <FormInput 
@@ -60,16 +60,15 @@ class LyricFinder extends Component {
                     handleSecondChange={this.handleSecondChange} 
                     artist={this.state.artist}
                     title={this.state.title}
-                />
-                {/* { this.state.error ? this.state.error : null} */}
+                    />
+                    {/* {error? <div>{error}</div> : null} */}
                 <Lyrics
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
                     error={this.state.error}
                 />
             </div>
-        )
-    }
+        )}
 }
 
 export default LyricFinder

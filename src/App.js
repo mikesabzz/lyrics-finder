@@ -1,9 +1,10 @@
 import React from "react";
-import Home from './components/Home'
+import LyricFinder from './components/LyricFinder'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
     return (
-        <Home />
+        <LyricFinder />
     )
 }
 export default App
