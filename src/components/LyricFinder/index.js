@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import axios from 'axios'
 import Lyrics from '../Lyrics'
 import FormInput from '../FormInput'
-import './LyricFinder.css'
 
 class LyricFinder extends Component {
     constructor() {
@@ -50,7 +49,9 @@ class LyricFinder extends Component {
         this.handleChange(event)
         this.handleSecondChange(event)
     }
-
+    componentWillMount() {
+        document.body.style.backgroundColor = "#00220F";    
+    }
     render() {
         const {error}=this.state
         return (

@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
     return (
-        <LyricFinder />
+        <div className="App">
+            <LyricFinder />
+        </div>
     )
 }
 export default App
