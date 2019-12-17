@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Lakki+Reddy&display=swap');
+
+.lyric-body {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    color: black;
+    font-family: 'Lakki Reddy', cursive;
+    margin: 5%;
+    /* background-image: url(./background.png); */
+}

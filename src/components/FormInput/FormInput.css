@@ -1,6 +1,6 @@
 .input-field {
     display: flex;
-    background-color: green;
+    background-color: rgb(0, 90, 128);
     justify-content: center;
-    
+    padding: 3%;
 }

@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from 'axios'
 import Lyrics from '../Lyrics'
 import FormInput from '../FormInput'
+import './LyricFinder.css'
 
 class LyricFinder extends Component {
     constructor() {
