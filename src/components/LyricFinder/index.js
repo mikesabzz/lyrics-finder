@@ -11,7 +11,7 @@ class LyricFinder extends Component {
             artistLyrics: {},
             error: "",
             artist: "",
-            title: ""
+            title: "",
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
