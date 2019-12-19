@@ -16,11 +16,12 @@ class LyricFinder extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSecondChange = this.handleSecondChange.bind(this)
+        this.clear = this.clear.bind(this) 
         
     }
     
     fetchData = async () => {
-        this.setState({ loading: true })
+        this.setState({ loading: true, error: false })
         await axios.get(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
             .then(res => {
                 this.setState({
@@ -30,8 +31,11 @@ class LyricFinder extends Component {
             })
             .catch(error => {
                 console.log(error)
-                this.setState({error: "Lyrics not Available"})
+                this.setState({error: true, loading: false})
             })
+    }
+    clear() {
+        this.reset()
     }
     handleChange(event) {
         event.preventDefault()
@@ -53,24 +57,31 @@ class LyricFinder extends Component {
         document.body.style.backgroundColor = "black"    
     }
     render() {
-        const {error}=this.state
+        const { error } = this.state
         return (
             <div>
-                <FormInput 
-                    handleSubmit={this.handleSubmit} 
-                    handleChange={this.handleChange} 
-                    handleSecondChange={this.handleSecondChange} 
+                <FormInput
+                    handleSubmit={this.handleSubmit}
+                    handleChange={this.handleChange}
+                    handleSecondChange={this.handleSecondChange}
                     artist={this.state.artist}
                     title={this.state.title}
-                    />
-                    {/* {error? <div>{error}</div> : null} */}
+                    clear={this.clear}
+                />
+                {error ?
+                    <div
+                        className="lyric-body">
+                        Song Not Found!
+                        </div>
+                    : null
+                }
                 <Lyrics
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
-                    error={this.state.error}
                 />
             </div>
-        )}
+        )
+    }
 }
 
 export default LyricFinder

@@ -6,7 +6,6 @@ const Lyrics = (props) => {
         <div  className="lyric-body">
             <div>
                 {props.loading ? <h1>loading...</h1> : props.artistLyrics.lyrics}
-                {/* {props.error? props.error : null}  */}
             </div>
         </div>
     )
