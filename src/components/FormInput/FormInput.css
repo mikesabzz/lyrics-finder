@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+
 .input-field {
     display: flex;
-    background-color: rgb(75, 3, 3);
+    background-image: linear-gradient(to left top, #000000,  #000000, #06110a, #12eb6b, #12eb6b);   
     justify-content: center;
     padding: 3%;
-    box-shadow: 7px 10px 12px rgb(109, 137, 145);
+    font-family: 'Acme', sans-serif;
 }

@@ -7,18 +7,18 @@ const FormInput = (props) => {
                 <form onSubmit={props.handleSubmit}>
                     <label>
                         <input
-                            className="form-control form-control-lg"
+                            className="form-control input-lg ml-2"
                             type="text"
                             value={props.artist}
                             name="artist"
-                            placeholder="Artist"
+                            placeholder="Artist" 
                             onChange={props.handleChange}
                             required
                         />
                     </label>
                     <label>
                         <input
-                            className="form-control form-control-lg ml-2"
+                            className="form-control input-lg ml-3"
                             type="text"
                             value={props.title}
                             name="title"
@@ -27,7 +27,8 @@ const FormInput = (props) => {
                             required
                         />
                     </label>
-                    <button className="btn btn-danger ml-3">Submit</button>
+                    <button className="btn btn-danger ml-4">
+                    <span className="glyphicon glyphicon-search"></span> Search</button>
                 </form>
             </div>
         )

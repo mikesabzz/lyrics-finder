@@ -50,7 +50,7 @@ class LyricFinder extends Component {
         this.handleSecondChange(event)
     }
     componentWillMount() {
-        document.body.style.backgroundColor = "#00220F";    
+        document.body.style.backgroundColor = "black"    
     }
     render() {
         const {error}=this.state
