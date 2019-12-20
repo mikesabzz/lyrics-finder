@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from 'axios'
 import Lyrics from '../Lyrics'
 import FormInput from '../FormInput'
+import Itunes from '../Itunes'
 
 class LyricFinder extends Component {
     constructor() {
@@ -53,7 +54,7 @@ class LyricFinder extends Component {
         this.handleChange(event)
         this.handleSecondChange(event)
     }
-    componentWillMount() {
+    componentDidMount() {
         document.body.style.backgroundColor = "black"    
     }
     render() {
@@ -78,6 +79,10 @@ class LyricFinder extends Component {
                 <Lyrics
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
+                />
+                <Itunes 
+                    artist={this.state.artist}
+                    title={this.state.title}
                 />
             </div>
         )
