@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from 'axios'
 import Lyrics from '../Lyrics'
 import FormInput from '../FormInput'
+import ITunes from '../ITunes'
 
 class LyricFinder extends Component {
     constructor() {
@@ -12,7 +13,7 @@ class LyricFinder extends Component {
             error: "",
             artist: "",
             title: "",
-            items: []
+            itunes: []
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -42,7 +43,7 @@ class LyricFinder extends Component {
         .then(res => {
             this.setState({
                 loading: false,
-                items: res.data.results,
+                itunes: res.data.results,
             })
         })
         .catch(error => {
@@ -75,18 +76,7 @@ class LyricFinder extends Component {
         document.body.style.backgroundColor = "black"    
     }
     render() {
-        const { error, items, loading } = this.state
-        const array = items.map(item => {
-            return (
-                <div>
-                    <audio controls>
-                        <source src={item.previewUrl} />
-                    </audio>
-                    <img src={item.artworkUrl100} />
-                </div>
-            )
-        })
-        const arrayFirst = loading? <h1>Loading...</h1> : array[0]
+        const { error } = this.state
         return (
             <div>
                 <FormInput
@@ -108,20 +98,13 @@ class LyricFinder extends Component {
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
                 />
-                <div className="text-white">
-                    {arrayFirst}
-                    {error ?
-                        <div
-                            className="lyric-body">
-                            Preview Not Found!
-                        </div>
-                        : null
-                    }
-                    
-                </div>
+                <ITunes 
+                    error={this.state.error}
+                    itunes={this.state.itunes}
+                    loading={this.state.loading}
+                />
             </div>
         )
     }
 }
-
 export default LyricFinder
