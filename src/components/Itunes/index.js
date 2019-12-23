@@ -5,14 +5,14 @@ class Itunes extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: {}
+            items: []
         }
     }
     fetchData = async () => {
-        await axios.get(`https://itunes.apple.com/search?term=${this.props.artist}&term=${this.props.title}`)
+        await axios.get(`https://itunes.apple.com/search?term=maroon 5&term=maps`)
         .then(res => {
             this.setState({
-                data: res.data,
+                items: res.data.results,
             })
         })
         .catch(error => {
@@ -22,9 +22,22 @@ class Itunes extends React.Component {
     componentDidMount() {
         this.fetchData()
     }
+
+
     render() {
+        const { items } = this.state
+        const array = items.map(item => {
         return (
-            <div>{this.state.data.kind}</div>
+         <audio controls>
+            <source src={item.previewUrl} />
+        </audio>
+        )
+        })
+        const arrayFirst = array[0]
+        return (
+            <div className="text-white">
+                {arrayFirst}
+            </div>
         )
     }
 }
