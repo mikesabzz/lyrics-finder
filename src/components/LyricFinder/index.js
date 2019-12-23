@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import axios from 'axios'
 import Lyrics from '../Lyrics'
 import FormInput from '../FormInput'
-import Itunes from '../Itunes'
 
 class LyricFinder extends Component {
     constructor() {
@@ -13,6 +12,7 @@ class LyricFinder extends Component {
             error: "",
             artist: "",
             title: "",
+            items: []
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -35,6 +35,22 @@ class LyricFinder extends Component {
                 this.setState({error: true, loading: false})
             })
     }
+
+    fetchItunesData = async () => {
+        this.setState({ loading: true, error: false})
+        await axios.get(`https://itunes.apple.com/search?term=${this.state.title}`)
+        .then(res => {
+            this.setState({
+                loading: false,
+                items: res.data.results,
+            })
+        })
+        .catch(error => {
+            console.log(error)
+            this.setState({error: true, loading: false})
+        })
+    }
+
     clear() {
         this.reset()
     }
@@ -51,6 +67,7 @@ class LyricFinder extends Component {
     handleSubmit(event) {
         event.preventDefault()
         this.fetchData()
+        this.fetchItunesData()
         this.handleChange(event)
         this.handleSecondChange(event)
     }
@@ -58,7 +75,18 @@ class LyricFinder extends Component {
         document.body.style.backgroundColor = "black"    
     }
     render() {
-        const { error } = this.state
+        const { error, items, loading } = this.state
+        const array = items.map(item => {
+            return (
+                <div>
+                    <audio controls>
+                        <source src={item.previewUrl} />
+                    </audio>
+                    <img src={item.artworkUrl100} />
+                </div>
+            )
+        })
+        const arrayFirst = loading? <h1>Loading...</h1> : array[0]
         return (
             <div>
                 <FormInput
@@ -80,10 +108,17 @@ class LyricFinder extends Component {
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
                 />
-                <Itunes 
-                    artist={this.state.artist}
-                    title={this.state.title}
-                />
+                <div className="text-white">
+                    {arrayFirst}
+                    {error ?
+                        <div
+                            className="lyric-body">
+                            Preview Not Found!
+                        </div>
+                        : null
+                    }
+                    
+                </div>
             </div>
         )
     }
