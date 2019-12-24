@@ -2,11 +2,14 @@ import React from "react";
 import './Lyrics.css'
 
 const Lyrics = (props) => {
+    const theLyrics = props.loading ? <h1>Loading Lyrics...</h1> : props.artistLyrics.lyrics
     return (
-        <div  className="lyric-body">
-            <div>
-                {props.loading ? <h1>loading...</h1> : props.artistLyrics.lyrics}
-            </div>
+        <div className="lyric-body">
+            {props.error ?
+                <div>Song Not Found!</div>
+                :
+                <div>{theLyrics}</div>
+            }
         </div>
     )
 }

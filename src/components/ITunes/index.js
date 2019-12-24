@@ -9,14 +9,12 @@ const ITunes = (props) => {
                 </audio>
                 <img src={itune.artworkUrl100} />
             </div>
-        )
-    })
-    const arrayFirst = props.loading? <h1>Loading...</h1> : array[0]
+        )})
     return (
-        <div>
-            {arrayFirst}
+        <div className="lyric-body">
+            {props.loading ? <h1>Loading Preview...</h1> : array}
             {props.error ? 
-                <div className="lyric-body">
+                <div>
                     Preview Not Found!
                 </div> 
             : null}

@@ -39,7 +39,7 @@ class LyricFinder extends Component {
 
     fetchItunesData = async () => {
         this.setState({ loading: true, error: false})
-        await axios.get(`https://itunes.apple.com/search?term=${this.state.title}`)
+        await axios.get(`https://itunes.apple.com/search?term=${this.state.artist}&term=${this.state.title}&limit=1`)
         .then(res => {
             this.setState({
                 loading: false,
@@ -76,7 +76,6 @@ class LyricFinder extends Component {
         document.body.style.backgroundColor = "black"    
     }
     render() {
-        const { error } = this.state
         return (
             <div>
                 <FormInput
@@ -87,16 +86,11 @@ class LyricFinder extends Component {
                     title={this.state.title}
                     clear={this.clear}
                 />
-                {error ?
-                    <div
-                        className="lyric-body">
-                        Song Not Found!
-                        </div>
-                    : null
-                }
                 <Lyrics
+                    error={this.state.error}
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
+                    clear={this.clear}
                 />
                 <ITunes 
                     error={this.state.error}
