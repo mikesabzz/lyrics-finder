@@ -10,8 +10,7 @@ class LyricFinder extends Component {
         this.state = {
             loading: false,
             artistLyrics: {},
-            lyricError: "",
-            ituneError: "",
+            error: "",
             artist: "",
             title: "",
             itunes: []
@@ -24,7 +23,7 @@ class LyricFinder extends Component {
     }
     
     fetchData = async () => {
-        this.setState({ loading: true, lyricError: false })
+        this.setState({ loading: true, error: false })
         await axios.get(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
             .then(res => {
                 this.setState({
@@ -34,12 +33,12 @@ class LyricFinder extends Component {
             })
             .catch(error => {
                 console.log(error)
-                this.setState({lyricError: true, loading: false})
+                this.setState({error: true, loading: false})
             })
     }
 
     fetchItunesData = async () => {
-        this.setState({ loading: true, ituneError: false})
+        this.setState({ loading: true, error: false})
         await axios.get(`https://itunes.apple.com/search?term=${this.state.artist}&term=${this.state.title}&limit=1`)
         .then(res => {
             this.setState({
@@ -49,7 +48,7 @@ class LyricFinder extends Component {
         })
         .catch(error => {
             console.log(error)
-            this.setState({ituneError: true, loading: false})
+            this.setState({error: true, loading: false})
         })
     }
 
@@ -88,12 +87,12 @@ class LyricFinder extends Component {
                     clear={this.clear}
                 />
                 <Lyrics
-                    lyricError={this.state.lyricError}
+                    error={this.state.error}
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
                 />
                 <ITunes 
-                    ituneError={this.state.ituneError}
+                    error={this.state.error}
                     itunes={this.state.itunes}
                     loading={this.state.loading}
                     artist={this.state.artist}
