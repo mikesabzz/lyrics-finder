@@ -90,12 +90,12 @@ class LyricFinder extends Component {
                     error={this.state.error}
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
-                    clear={this.clear}
                 />
                 <ITunes 
                     error={this.state.error}
                     itunes={this.state.itunes}
                     loading={this.state.loading}
+                    artist={this.state.artist}
                 />
             </div>
         )

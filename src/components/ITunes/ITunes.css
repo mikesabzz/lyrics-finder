@@ -1,0 +1,9 @@
+.Itunes-url {
+    display: flex;
+    flex-direction: column;
+}
+.Itunes-url img{
+    display: flex;
+    height: 30vh;
+    width: auto;
+}

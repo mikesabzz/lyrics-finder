@@ -1,15 +1,19 @@
 import React from "react";
+import './ITunes.css'
 
 const ITunes = (props) => {
     const array = props.itunes.map(itune => {
+        if (props.artist != itune.artistName.toLowerCase()) {return (<div>Preview Not Available</div>) }
+        else {
         return (
-            <div>
+            <div className="Itunes-url">
+                <img src={itune.artworkUrl100} />
+                <br />
                 <audio controls>
                     <source src={itune.previewUrl} />
                 </audio>
-                <img src={itune.artworkUrl100} />
             </div>
-        )})
+        )}})
     return (
         <div className="lyric-body">
             {props.loading ? <h1>Loading Preview...</h1> : array}
@@ -20,5 +24,7 @@ const ITunes = (props) => {
             : null}
         </div>
     )
-}
+
+            }     
+
 export default ITunes
