@@ -3,12 +3,11 @@
 
 ### React app styled with Bootstrap and Flexbox.
 
-<<<<<<< HEAD
-### A front-end application that uses a lyrics and an iTunes API. Search an artist and song then the lyrics and iTunes preview audio appear.
+### A front-end react application that uses two third-party API's (lyrics and iTunes), that allows you to search for an artist and song title, then the lyrics and iTunes preview audio will appear.
+
+### Softwares used:
+##### React, Bootstrap, and Flexbox
 
 ### Demo: 
 ![](lyrics-app.gif)
-=======
-### Uses a third-party lyrics and iTunes API to search for any artist and song title, and then have the lyrics and iTunes preview audio appear, in the search.
->>>>>>> 2502262cc753d80deed4de6764b288cd220e8535
 
