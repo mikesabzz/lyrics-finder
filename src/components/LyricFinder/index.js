@@ -97,6 +97,7 @@ class LyricFinder extends Component {
                     itunes={this.state.itunes}
                     loading={this.state.loading}
                     artist={this.state.artist}
+                    title={this.state.title}
                 />
             </div>
         )
