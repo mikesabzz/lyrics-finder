@@ -1,6 +1,5 @@
-# lyrics-finder
+# lyrics-itune-app
 
-## React App
-### Styled with Bootstrap and Flexbox.
+### React app styled with Bootstrap and Flexbox.
 
-### Uses a lyrics and iTunes API. Search an artist and song then the lyrics and iTunes preview audio appear.
+### Uses a third-party lyrics and iTunes API to search for any artist and song title, and then have the lyrics and iTunes preview audio appear, in the search.
