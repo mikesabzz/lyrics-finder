@@ -3,7 +3,7 @@ import './ITunes.css'
 
 const ITunes = (props) => {
     const array = props.itunes.map(itune => {
-        if (props.artist != itune.artistName.toLowerCase()) {return (<div>Preview Not Available</div>) }
+        if (props.artist != itune.artistName.toLowerCase()) {return (<div>Preview Audio Not Available</div>) }
         else {
         return (
             <div className="Itunes-url">
