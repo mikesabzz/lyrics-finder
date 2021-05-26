@@ -4,7 +4,7 @@ import './ITunes.css'
 const ITunes = (props) => {
     const array = props.itunes.map(itune => {
         if (props.artist != itune.artistName.toLowerCase()) {
-            return (<div>{props.error}</div>) 
+            return (<div></div>) 
         } else {
         return (
             <div className="Itunes-url">
