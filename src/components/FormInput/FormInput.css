@@ -17,14 +17,11 @@ input.form-control::placeholder {
     color: rgb(80, 78, 78);
     opacity: 1; 
 }
-.search-button{
+/* .search-button{
     position: absolute;
     right: 35vh;
     width: 300px;
     height: 40px;
     bottom: 60vh;
-}
-#reset-button {
-    right: 35vh;
-    bottom: 60vh;
-}
+} */
+

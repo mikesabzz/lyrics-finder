@@ -33,7 +33,7 @@ const FormInput = (props) => {
                             />
                         </label>
                         <br />
-                        <button className="search-button btn btn-danger">
+                        <button className="search-button btn btn-danger ml-3">
                             <span className="glyphicon glyphicon-search"></span> Search</button>
                     </form>
                 </div> }
