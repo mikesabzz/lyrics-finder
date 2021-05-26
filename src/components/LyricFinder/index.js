@@ -71,7 +71,7 @@ class LyricFinder extends Component {
         this.fetchItunesData()
         this.handleChange(event)
         this.handleSecondChange(event)
-        this.setState({ hidden : true});
+        this.setState({ hidden : true });
     }
     componentDidMount() {
         document.body.style.backgroundColor = "black"    
@@ -92,6 +92,7 @@ class LyricFinder extends Component {
                     error={this.state.error}
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
+                    hidden={this.state.hidden}
                 />
                 <ITunes 
                     error={this.state.error}

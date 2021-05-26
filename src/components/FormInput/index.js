@@ -1,9 +1,7 @@
 import React from "react";
 import './FormInput.css'
 
-const FormInput = (props) => {
-        console.log(props.hidden);
-        
+const FormInput = (props) => {        
         return (
             <div>
                 {props.hidden? "" :
