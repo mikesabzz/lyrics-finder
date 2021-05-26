@@ -2,13 +2,16 @@ import React from "react";
 import './FormInput.css'
 
 const FormInput = (props) => {
+        console.log(props.hidden);
+        
         return (
             <div>
+                {props.hidden? "" :
                 <div className="input-field">
                     <form onSubmit={props.handleSubmit}>
                         <label>
                             <input
-                                className="form-control input-lg ml-2"
+                                className="form-control input-lg ml-3"
                                 type="text"
                                 value={props.artist}
                                 name="artist"
@@ -17,6 +20,7 @@ const FormInput = (props) => {
                                 required
                             />
                         </label>
+                        <br />
                         <label>
                             <input
                                 className="form-control input-lg ml-3"
@@ -28,15 +32,18 @@ const FormInput = (props) => {
                                 required
                             />
                         </label>
-                        <button className="btn btn-danger ml-4">
+                        <br />
+                        <button className="search-button btn btn-danger">
                             <span className="glyphicon glyphicon-search"></span> Search</button>
                     </form>
-                </div>
+                </div> }
+                {props.hidden == false ? "" :
                 <form>
-                    <button onClick={props.clear} className="btn btn-light ml-3">
-                        <span className="glyphicon glyphicon-refresh"></span>
+                    <button onClick={props.clear} className="btn btn-secondary m-3">
+                        Search For a New Song
                     </button>
                 </form>
+                }
             </div>
         )
     }

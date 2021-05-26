@@ -6,4 +6,25 @@
     justify-content: center;
     padding: 3%;
     font-family: 'Acme', sans-serif;
+    height: 20pc;
+}
+input.form-control {
+    width: 70vh;
+    background-color: rgb(200, 233, 243);
+    margin: 10px;
+}
+input.form-control::placeholder { 
+    color: rgb(80, 78, 78);
+    opacity: 1; 
+}
+.search-button{
+    position: absolute;
+    right: 35vh;
+    width: 300px;
+    height: 40px;
+    bottom: 60vh;
+}
+#reset-button {
+    right: 35vh;
+    bottom: 60vh;
 }

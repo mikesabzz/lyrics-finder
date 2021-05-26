@@ -13,13 +13,13 @@ class LyricFinder extends Component {
             error: "",
             artist: "",
             title: "",
-            itunes: []
+            itunes: [],
+            hidden: false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSecondChange = this.handleSecondChange.bind(this)
-        this.clear = this.clear.bind(this) 
-        
+        this.clear = this.clear.bind(this)         
     }
     
     fetchData = async () => {
@@ -71,6 +71,7 @@ class LyricFinder extends Component {
         this.fetchItunesData()
         this.handleChange(event)
         this.handleSecondChange(event)
+        this.setState({ hidden : true});
     }
     componentDidMount() {
         document.body.style.backgroundColor = "black"    
@@ -85,6 +86,7 @@ class LyricFinder extends Component {
                     artist={this.state.artist}
                     title={this.state.title}
                     clear={this.clear}
+                    hidden={this.state.hidden}
                 />
                 <Lyrics
                     error={this.state.error}
@@ -97,7 +99,7 @@ class LyricFinder extends Component {
                     loading={this.state.loading}
                     artist={this.state.artist}
                     title={this.state.title}
-                />
+                /> 
             </div>
         )
     }
