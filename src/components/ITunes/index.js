@@ -18,9 +18,7 @@ const ITunes = (props) => {
         const ituneAudio = props.loading ? <div>Loading Preview...</div> : array
     return (
         <div className="lyric-body">
-            {props.error ? 
-                <div>Preview Not Found!</div> 
-            : <div>{ituneAudio}</div>}
+            <div>{ituneAudio}</div>
         </div>
     )
 

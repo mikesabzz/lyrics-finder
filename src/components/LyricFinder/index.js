@@ -15,7 +15,6 @@ class LyricFinder extends Component {
             title: "",
             itunes: [],
             hidden: false,
-            youtubeLink: "",
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -30,7 +29,6 @@ class LyricFinder extends Component {
                 this.setState({
                     loading: false,
                     artistLyrics: res.data,
-                    youtubeLink: `https://www.youtube.com/results?search_query=${this.state.artist}+${this.state.title}`
                 })
             })
             .catch(error => {
@@ -78,7 +76,6 @@ class LyricFinder extends Component {
         document.body.style.backgroundColor = "black"    
     }
     render() {
-        console.log(this.state.error)
         return (
             <div>
                 <FormInput
@@ -103,12 +100,6 @@ class LyricFinder extends Component {
                     artist={this.state.artist}
                     title={this.state.title}
                 /> 
-                {this.state.hidden && !this.state.error?
-                <span>
-                    <a href={this.state.youtubeLink} target="blank_">Search song on YouTube?</a>
-                </span> : <div></div>
-                }
-
             </div>
         )
     }

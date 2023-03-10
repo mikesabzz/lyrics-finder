@@ -4,7 +4,6 @@ import './FormInput.css'
 const FormInput = (props) => {        
         return (
             <div>
-                {props.hidden? "" :
                 <div className="input-field">
                     <form onSubmit={props.handleSubmit}>
                         <label>
@@ -34,14 +33,7 @@ const FormInput = (props) => {
                         <button className="search-button btn btn-danger ml-3">
                             <span className="glyphicon glyphicon-search"></span> Search</button>
                     </form>
-                </div> }
-                {props.hidden == false ? "" :
-                <form>
-                    <button onClick={props.clear} className="btn btn-secondary m-3">
-                        Search For a New Song
-                    </button>
-                </form>
-                }
+                </div> 
             </div>
         )
     }
