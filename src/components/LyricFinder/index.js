@@ -39,7 +39,7 @@ class LyricFinder extends Component {
 
     fetchItunesData = async () => {
         this.setState({ loading: true, error: false})
-        await axios.get(`https://itunes.apple.com/search?term=${this.state.artist}&term=${this.state.title}&limit=1`)
+        await axios.get(`https://itunes.apple.com/search?term=${this.state.artist}+${this.state.title}&media=music&limit=1`)
         .then(res => {
             this.setState({
                 loading: false,
