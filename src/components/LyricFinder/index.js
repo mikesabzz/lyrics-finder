@@ -21,14 +21,16 @@ class LyricFinder extends Component {
         this.handleSecondChange = this.handleSecondChange.bind(this)
         this.clear = this.clear.bind(this)         
     }
-    
+
     fetchData = async () => {
+        // const lyricsApi = process.env.Lyrics_React_API_KEY;
         this.setState({ loading: true, error: false })
-        await axios.get(`https://api.lyrics.ovh/v1/${this.state.artist}/${this.state.title}`)
+        await axios.get(`https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&q_track=${this.state.title}&q_artist=${this.state.artist}&apikey=`)
             .then(res => {
+                console.log(res.data.message.body.lyrics);
                 this.setState({
                     loading: false,
-                    artistLyrics: res.data,
+                    artistLyrics: res.data.message.body.lyrics,
                 })
             })
             .catch(error => {
