@@ -23,7 +23,7 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
-        // const lyricsApi = process.env.Lyrics_React_API_KEY;
+        const lyricsApi = process.env.Lyrics_React_API_KEY;
         this.setState({ loading: true, error: false })
         await axios.get(`https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&q_track=${this.state.title}&q_artist=${this.state.artist}&apikey=`)
             .then(res => {
