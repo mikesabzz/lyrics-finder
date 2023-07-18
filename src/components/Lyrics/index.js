@@ -6,7 +6,7 @@ const Lyrics = (props) => {
     // console.log(props.artistLyrics.lyrics_body);
     return (
         <div className="lyric-body">
-            {props.hidden && props.artistLyrics.lyrics_body == undefined ?
+            {props.hidden && props.artistLyrics.lyrics_body === undefined ?
                 <div>Lyrics Not Found!</div>
                 :
                 <div>{theLyrics}</div>

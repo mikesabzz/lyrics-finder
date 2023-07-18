@@ -23,21 +23,39 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
-        const lyricsApi = process.env.Lyrics_React_API_KEY;
-        this.setState({ loading: true, error: false })
-        await axios.get(`https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&q_track=${this.state.title}&q_artist=${this.state.artist}&apikey=`)
-            .then(res => {
-                console.log(res.data.message.body.lyrics);
-                this.setState({
-                    loading: false,
-                    artistLyrics: res.data.message.body.lyrics,
-                })
-            })
-            .catch(error => {
-                console.log(error)
-                this.setState({error: true, loading: false})
-            })
-    }
+        this.setState({ loading: true, error: false });
+        try {
+          const response = await axios.get('/api', {
+            params: {
+              format: 'json',
+              q_track: this.state.title,
+              q_artist: this.state.artist,
+            },
+          });
+      
+          console.log(response); // Check the structure of the API response in the console
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          this.setState({ error: true, loading: false });
+        }
+      };
+
+    // fetchData = async () => {
+    //     const lyricsApi = process.env.Lyrics_React_API_KEY;
+    //     this.setState({ loading: true, error: false })
+    //     await axios.get(`https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&q_track=${this.state.title}&q_artist=${this.state.artist}&apikey=`)
+    //         .then(res => {
+    //             console.log(res.data.message.body.lyrics);
+    //             this.setState({
+    //                 loading: false,
+    //                 artistLyrics: res.data.message.body.lyrics,
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //             this.setState({error: true, loading: false})
+    //         })
+    // }
 
     fetchItunesData = async () => {
         this.setState({ loading: true, error: false})
