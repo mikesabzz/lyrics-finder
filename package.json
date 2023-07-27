@@ -9,6 +9,8 @@
     "axios": "^1.4.0",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-document-title": "^2.0.3",
@@ -39,5 +41,10 @@
   "devDependencies": {
     "http-proxy-middleware": "^2.0.6",
     "react-scripts": "^5.0.1"
-  }
+  },
+  "description": "### A front-end react application that uses two third-party API's (lyrics and iTunes), that allows you to search for an artist and song title, then the lyrics and iTunes preview audio will appear.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

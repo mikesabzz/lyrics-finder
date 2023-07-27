@@ -3,7 +3,7 @@ import './ITunes.css'
 
 const ITunes = (props) => {
     const array = props.itunes.map(itune => {
-        if (props.artist != itune.artistName.toLowerCase()) {
+        if (props.artist !== itune.artistName.toLowerCase()) {
             return (<div></div>) 
         } else {
         return (

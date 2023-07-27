@@ -23,22 +23,23 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
-        this.setState({ loading: true, error: false });
-        try {
-          const response = await axios.get('/api', {
-            params: {
-              format: 'json',
-              q_track: this.state.title,
-              q_artist: this.state.artist,
-            },
-          });
-      
-          console.log(response); // Check the structure of the API response in the console
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          this.setState({ error: true, loading: false });
-        }
-      };
+        const apiUrl = "http://localhost:5000/lyrics";
+        fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data);
+            this.setState({
+                loading: false,
+                artistLyrics: data.message.body.lyrics.lyrics_body,
+            })
+            // Handle the lyrics data here
+        })
+        .catch((error) => {
+            console.error('Error fetching lyrics:', error);
+        });
+
+    };
+    
 
     // fetchData = async () => {
     //     const lyricsApi = process.env.Lyrics_React_API_KEY;
