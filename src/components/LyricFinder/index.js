@@ -27,12 +27,10 @@ class LyricFinder extends Component {
         fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
         .then((response) => response.json())
         .then((data) => {
-            // console.log(data);
             this.setState({
                 loading: false,
                 artistLyrics: data.message.body.lyrics.lyrics_body,
             })
-            // Handle the lyrics data here
         })
         .catch((error) => {
             console.error('Error fetching lyrics:', error);
