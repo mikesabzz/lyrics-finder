@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   // Set CORS headers to allow requests from any origin
-  res.header('Access-Control-Allow-Origin', 'http://lyricsfinder.surge.sh/');
+  res.header('Access-Control-Allow-Origin', 'https://lyricsfinder-net.netlify.app/');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
