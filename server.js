@@ -5,14 +5,20 @@ const PORT = 5000;
 require('dotenv').config();
 const apiKey = process.env.MUSIXMATCH_API_KEY; 
 
-app.use(express.json());
+// app.use(express.json());
 
-app.use((req, res, next) => {
-  // Set CORS headers to allow requests from your React app
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+const corsOptions = {
+  origin: process.env.REACT_ENV,
+};
+
+app.use(cors(corsOptions));
+
+// app.use((req, res, next) => {
+//   // Set CORS headers to allow requests from your React app
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
 app.get('/lyrics', async (req, res) => {
   const musixmatchApiUrl = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get';
