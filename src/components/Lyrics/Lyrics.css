@@ -19,11 +19,10 @@ body {
   background-color: #1a1a1a;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 767px) {
   .lyric-body {
     background-color: #1a1a1a;
-    font-size: 1.5rem; /* Reducing the font size a bit for mobile */
+    font-size: 1.5rem; 
     padding: 1rem;
   }
 }

@@ -84,6 +84,7 @@ class LyricFinder extends Component {
                     title={this.state.title}
                     clear={this.clear}
                     hidden={this.state.hidden}
+                    disableSubmit={this.disableSubmit}
                 />
                 <Lyrics
                     error={this.state.error}
