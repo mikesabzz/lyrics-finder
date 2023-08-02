@@ -2,26 +2,40 @@
 
 .input-field {
     display: flex;
-    background-image: linear-gradient(to left top, #000000,  #000000, #06110a, #12eb6b, #12eb6b);   
     justify-content: center;
     padding: 3%;
     font-family: 'Acme', sans-serif;
-    height: 20pc;
 }
-input.form-control {
-    width: 70vh;
-    background-color: rgb(200, 233, 243);
-    margin: 10px;
-}
-input.form-control::placeholder { 
-    color: rgb(80, 78, 78);
-    opacity: 1; 
-}
-/* .search-button{
-    position: absolute;
-    right: 35vh;
-    width: 300px;
-    height: 40px;
-    bottom: 60vh;
-} */
+
+@media (min-width: 768px) {
+    .input-field {
+      background-image: linear-gradient(
+        to left top,
+        #000000,
+        #000000,
+        #06110a,
+        #12eb6b,
+        #12eb6b
+      );
+      height: 20pc;
+    }
+    input.form-control {
+      width: 70vh;
+      background-color: rgb(200, 233, 243);
+      margin: 10px;
+    }
+  }
+  @media (max-width: 767px) {
+    .input-field {
+      background-color: #1a1a1a;
+      background-image: none; 
+      height: auto; 
+    }
+    input.form-control {
+      width: 100%;
+      background-color: rgb(200, 233, 243);
+      margin: 10px;
+    }
+  }
+
 

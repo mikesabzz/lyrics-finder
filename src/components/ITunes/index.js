@@ -2,13 +2,13 @@ import React from "react";
 import './ITunes.css'
 
 const ITunes = (props) => {
-    const array = props.itunes.map(itune => {
+    const array = props.itunes.map((itune, index) => {
         if (props.artist !== itune.artistName.toLowerCase()) {
-            return (<div></div>) 
+            return null;
         } else {
         return (
-            <div className="Itunes-url">
-                <img src={itune.artworkUrl100} />
+            <div className="Itunes-url" key={index}>
+                <img src={itune.artworkUrl100} alt="Album Art" />
                 <br />
                 <audio controls>
                     <source src={itune.previewUrl} />

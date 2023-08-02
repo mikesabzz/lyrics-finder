@@ -37,24 +37,6 @@ class LyricFinder extends Component {
         });
 
     };
-    
-
-    // fetchData = async () => {
-    //     const lyricsApi = process.env.Lyrics_React_API_KEY;
-    //     this.setState({ loading: true, error: false })
-    //     await axios.get(`https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&q_track=${this.state.title}&q_artist=${this.state.artist}&apikey=`)
-    //         .then(res => {
-    //             console.log(res.data.message.body.lyrics);
-    //             this.setState({
-    //                 loading: false,
-    //                 artistLyrics: res.data.message.body.lyrics,
-    //             })
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             this.setState({error: true, loading: false})
-    //         })
-    // }
 
     fetchItunesData = async () => {
         this.setState({ loading: true, error: false})
@@ -91,9 +73,6 @@ class LyricFinder extends Component {
         this.handleSecondChange(event)
         this.setState({ hidden : true });
     }
-    componentDidMount() {
-        document.body.style.backgroundColor = "black"    
-    }
     render() {
         return (
             <div>
@@ -111,7 +90,7 @@ class LyricFinder extends Component {
                     artistLyrics={this.state.artistLyrics}
                     loading={this.state.loading}
                     hidden={this.state.hidden}
-                />
+                /> 
                 <ITunes 
                     error={this.state.error}
                     itunes={this.state.itunes}

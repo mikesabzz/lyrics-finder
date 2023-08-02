@@ -1,12 +1,29 @@
-@import url('https://fonts.googleapis.com/css?family=Lakki+Reddy&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+}
 
 .lyric-body {
-    display: flex;
-    justify-content: center;
-    font-size: xx-large;
-    color: whitesmoke;
-    font-family: 'Lakki Reddy', cursive;
-    margin: 5% 20% 5% 20%;   
-    text-shadow: 2px 2px rgb(91, 109, 92); 
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem; 
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  padding: 2rem;
+  text-align: center;
+  line-height: 1.6;
+  background-color: #1a1a1a;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
+  .lyric-body {
+    background-color: #1a1a1a;
+    font-size: 1.5rem; /* Reducing the font size a bit for mobile */
+    padding: 1rem;
+  }
 }
