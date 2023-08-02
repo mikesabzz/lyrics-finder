@@ -30,7 +30,7 @@ class LyricFinder extends Component {
           if (response.ok) {
             this.setState({
               loading: false,
-              artistLyrics: data.message.body.lyrics.lyrics_body,
+              artistLyrics: data.message.body.lyrics_body,
             });
           } else {
             throw new Error("Failed to fetch lyrics");
