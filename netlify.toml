@@ -1,2 +1,4 @@
-[build]
-  functions = "netlify/functions"
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.Access-Control-Allow-Origin]
+  origin = "*"
