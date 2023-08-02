@@ -9,12 +9,12 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   // Set CORS headers to allow requests from any origin
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'http://lyricsfinder.surge.sh/');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
-app.get('/.netlify/functions/index/lyrics', async (req, res) => {
+app.get('/.netlify/functions/index/', async (req, res) => {
   const musixmatchApiUrl = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get';
   const musicApiKey = apiKey;
 

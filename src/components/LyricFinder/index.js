@@ -23,7 +23,7 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
-        const apiUrl = "https://lyricsfinder-net.netlify.app/.netlify/functions/index/lyrics";
+        const apiUrl = "https://lyricsfinder-net.netlify.app/.netlify/functions/index/";
         try {
           const response = await fetch(`${apiUrl}?track=${encodeURIComponent(this.state.title)}&artist=${encodeURIComponent(this.state.artist)}`);
           const data = await response.json();
