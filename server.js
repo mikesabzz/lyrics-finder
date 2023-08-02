@@ -1,15 +1,15 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = 5000; 
+const PORT = process.env.PORT || 5000; // Use process.env.PORT for Netlify
 require('dotenv').config();
 const apiKey = process.env.MUSIXMATCH_API_KEY; 
 
 app.use(express.json());
 
 app.use((req, res, next) => {
-  // Set CORS headers to allow requests from your React app
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  // Set CORS headers to allow requests from any origin
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -38,6 +38,7 @@ app.get('/.netlify/functions/index/lyrics', async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+

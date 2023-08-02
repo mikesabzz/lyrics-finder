@@ -23,18 +23,20 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
-        const apiUrl = "http://localhost:5000/lyrics";
-        fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
-        .then((response) => response.json())
-        .then((data) => {
-            this.setState({
-                loading: false,
-                artistLyrics: data.message.body.lyrics.lyrics_body,
+        const apiUrl = "https://lyricsfinder-net.netlify.app/.netlify/functions/index/lyrics";
+        try{
+            await fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({
+                    loading: false,
+                    artistLyrics: data.message.body.lyrics.lyrics_body,
+                })
             })
-        })
-        .catch((error) => {
+        }
+        catch(error) {
             console.error('Error fetching lyrics:', error);
-        });
+        };
 
     };
 
