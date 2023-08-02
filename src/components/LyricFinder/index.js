@@ -24,21 +24,42 @@ class LyricFinder extends Component {
 
     fetchData = async () => {
         const apiUrl = "https://lyricsfinder-net.netlify.app/.netlify/functions/index/lyrics";
-        try{
-            await fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({
-                    loading: false,
-                    artistLyrics: data.message.body.lyrics.lyrics_body,
-                })
-            })
+        try {
+          const response = await fetch(`${apiUrl}?track=${encodeURIComponent(this.state.title)}&artist=${encodeURIComponent(this.state.artist)}`);
+          const data = await response.json();
+          if (response.ok) {
+            this.setState({
+              loading: false,
+              artistLyrics: data.message.body.lyrics.lyrics_body,
+            });
+          } else {
+            throw new Error("Failed to fetch lyrics");
+          }
+        } catch (error) {
+          console.error("Error fetching lyrics:", error);
+          this.setState({
+            loading: false,
+            artistLyrics: "Lyrics Not Found!",
+          });
         }
-        catch(error) {
-            console.error('Error fetching lyrics:', error);
-        };
+      };
+      
 
-    };
+    // fetchData = async () => {
+    //     const apiUrl = "https://lyricsfinder-net.netlify.app/.netlify/functions/index/lyrics";
+    //     fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         this.setState({
+    //             loading: false,
+    //             artistLyrics: data.message.body.lyrics.lyrics_body,
+    //         })
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error fetching lyrics:', error);
+    //     });
+
+    // };
 
     fetchItunesData = async () => {
         this.setState({ loading: true, error: false})
