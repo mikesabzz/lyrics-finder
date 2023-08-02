@@ -5,22 +5,16 @@ const PORT = 5000;
 require('dotenv').config();
 const apiKey = process.env.MUSIXMATCH_API_KEY; 
 
-// app.use(express.json());
+app.use(express.json());
 
-const corsOptions = {
-  origin: process.env.REACT_ENV,
-};
+app.use((req, res, next) => {
+  // Set CORS headers to allow requests from your React app
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
-app.use(cors(corsOptions));
-
-// app.use((req, res, next) => {
-//   // Set CORS headers to allow requests from your React app
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
-
-app.get('/lyrics', async (req, res) => {
+app.get('/.netlify/functions/index/lyrics', async (req, res) => {
   const musixmatchApiUrl = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get';
   const musicApiKey = apiKey;
 
@@ -44,7 +38,6 @@ app.get('/lyrics', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  // console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Backend URL: ${process.env.NODE_ENV}`);
+app.listen(5000, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

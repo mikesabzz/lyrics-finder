@@ -23,7 +23,7 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
-        const apiUrl = process.env.NODE_ENV + "/lyrics";
+        const apiUrl = "http://localhost:5000/lyrics";
         fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
         .then((response) => response.json())
         .then((data) => {
