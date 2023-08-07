@@ -7,6 +7,8 @@ import ITunes from '../ITunes'
 class LyricFinder extends Component {
     constructor() {
         super()
+        //place these in usestate
+        //look into dependency array
         this.state = {
             loading: false,
             artistLyrics: {},
@@ -23,6 +25,7 @@ class LyricFinder extends Component {
     }
 
     fetchData = async () => {
+        //imlement useeffects to recall the functions
         const apiUrl = "http://localhost:5000/lyrics";
         try {
           const response = await fetch(`${apiUrl}?track=${encodeURIComponent(this.state.title)}&artist=${encodeURIComponent(this.state.artist)}`);
@@ -43,24 +46,6 @@ class LyricFinder extends Component {
           });
         }
       };
-      
-
-    // fetchData = async () => {
-    //     const apiUrl = "https://lyricsfinder-net.netlify.app/.netlify/functions/index/lyrics";
-    //     fetch(apiUrl + `?track=${this.state.title}&artist=${this.state.artist}`)
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         this.setState({
-    //             loading: false,
-    //             artistLyrics: data.message.body.lyrics.lyrics_body,
-    //         })
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error fetching lyrics:', error);
-    //     });
-
-    // };
-
     fetchItunesData = async () => {
         this.setState({ loading: true, error: false})
         await axios.get(`https://itunes.apple.com/search?term=${this.state.artist}+${this.state.title}&media=music&limit=1`)

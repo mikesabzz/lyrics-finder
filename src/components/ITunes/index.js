@@ -15,7 +15,8 @@ const ITunes = (props) => {
                 </audio>
             </div>
         )}})
-        const ituneAudio = props.loading ? <div>Loading Preview...</div> : array
+    const ituneAudio = props.loading ? <div>Loading Preview...</div> : array
+
     return (
         <div className="lyric-body">
             <div>{ituneAudio}</div>
