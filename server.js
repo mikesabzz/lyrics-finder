@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = process.env.NODE_ENV || 5000; // Use process.env.PORT for Netlify
+const PORT = process.env.NODE_ENV || 5000;
 require('dotenv').config();
 const apiKey = process.env.MUSIXMATCH_API_KEY; 
 
