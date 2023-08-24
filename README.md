@@ -5,6 +5,7 @@
 
 ### Softwares used:  
 ### React, Bootstrap, and Flexbox
+### Express.js is used to host api services. Hosted on Render
 
 ### Demo: 
 ![](lyrics-app.gif)
