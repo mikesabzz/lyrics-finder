@@ -14,7 +14,7 @@ function LyricFinder() {
     const [hidden, setHidden] = useState(false);
 
     const fetchData = async () => {
-        const apiUrl = "http://localhost:5000/lyrics";
+        const apiUrl = "https://lyrics-itunes-app.onrender.com/lyrics";
         try {
             const response = await fetch(`${apiUrl}?track=${encodeURIComponent(title)}&artist=${encodeURIComponent(artist)}`);
             const data = await response.json();
@@ -44,7 +44,7 @@ function LyricFinder() {
         }
         setLoading(false);
     };
-    
+
     useEffect = () => {
         fetchItunesData();
         fetchData();
