@@ -38,6 +38,27 @@ app.get('/lyrics', async (req, res) => {
   }
 });
 
+// Route to fetch iTunes data
+app.get('/itunes', async (req, res) => {
+  const artistName = req.query.artist;
+  const trackName = req.query.track;
+
+  try {
+    const response = await axios.get('https://itunes.apple.com/search?', {
+      params: {
+        term: `${artistName} ${trackName}`,
+        media: 'music',
+        limit: 1,
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching iTunes data:', error.message);
+    res.status(500).json({ error: 'Failed to fetch iTunes data' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

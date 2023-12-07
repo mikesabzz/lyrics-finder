@@ -46,9 +46,15 @@ function LyricFinder() {
     setError(false);
     try {
         await new Promise(resolve => setTimeout(resolve, 2000));
-      const response = await axios.get(
-        `https://itunes.apple.com/search?term=${artist}+${title}&media=music&limit=1`
-      );
+        const response = await axios.get("http://localhost:5000/itunes", {
+          params: {
+            artist: artist,
+            track: title,
+          },
+        });
+      // const response = await axios.get(
+      //   `https://itunes.apple.com/search?term=${artist}+${title}&media=music&limit=1`
+      // );
       setItunes(response.data.results);
     } catch (error) {
       console.log(error);
