@@ -46,7 +46,7 @@ function LyricFinder() {
     setError(false);
     try {
         await new Promise(resolve => setTimeout(resolve, 2000));
-        const response = await axios.get("http://localhost:5000/itunes", {
+        const response = await axios.get("https://lyrics-itunes-app.onrender.com/itunes", {
           params: {
             artist: artist,
             track: title,
