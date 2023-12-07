@@ -2,11 +2,11 @@ import React from "react";
 import './Lyrics.css'
 
 const Lyrics = (props) => {
-    const theLyrics = props.loading ? <div>Loading Lyrics...</div> : props.artistLyrics;
+    // const theLyrics = props.loading ? <div>Loading Lyrics...</div> : props.artistLyrics;
 
     const renderLyricsContent = () => {
-       if (typeof theLyrics === 'string') {
-          return <div style={{ whiteSpace: 'pre-wrap' }}>{theLyrics}</div>;
+       if (typeof props.artistLyrics === 'string') {
+          return <div style={{ whiteSpace: 'pre-wrap' }}>{props.artistLyrics}</div>;
         } else {
           return <div>Search for a Song!</div>;
         }
@@ -17,7 +17,7 @@ const Lyrics = (props) => {
             {props.hidden && props.artistLyrics === undefined ?
                 <div>Lyrics Not Found!</div>
                 :
-                renderLyricsContent()
+                props.loading ? <div>Loading Lyrics...</div> : renderLyricsContent()
             }
         </div>
     )
