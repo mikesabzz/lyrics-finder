@@ -1,5 +1,5 @@
 # lyrics-itune-app
-## [Demo Link](http://lyricsfinder.surge.sh/) 
+## [Demo Link](https://lyricsfinder.onrender.com/) 
 
 ### A front-end react application that uses two third-party API's (lyrics and iTunes), that allows you to search for an artist and song title, then the lyrics and iTunes preview audio will appear.
 
