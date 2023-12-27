@@ -52,9 +52,6 @@ function LyricFinder() {
             track: title,
           },
         });
-      // const response = await axios.get(
-      //   `https://itunes.apple.com/search?term=${artist}+${title}&media=music&limit=1`
-      // );
       setItunes(response.data.results);
     } catch (error) {
       console.log(error);
@@ -63,11 +60,6 @@ function LyricFinder() {
         setLoading(false);
     }
   };
-
-  // useEffect(() => {
-  //     fetchItunesData();
-  //     fetchData();
-  // }, [artist, title]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
