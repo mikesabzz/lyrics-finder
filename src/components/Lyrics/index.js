@@ -3,7 +3,6 @@ import './Lyrics.css'
 
 const Lyrics = (props) => {
     // const theLyrics = props.loading ? <div>Loading Lyrics...</div> : props.artistLyrics;
-    //console.log(props);
 
     const renderLyricsContent = () => {
        if (typeof props.artistLyrics === 'string') {

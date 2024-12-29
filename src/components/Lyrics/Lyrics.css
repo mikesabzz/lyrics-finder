@@ -17,6 +17,7 @@ body {
   text-align: center;
   line-height: 1.6;
   background-color: #1a1a1a;
+  min-height: 50vh;
 }
 
 @media (max-width: 767px) {
