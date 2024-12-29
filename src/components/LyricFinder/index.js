@@ -19,15 +19,15 @@ function LyricFinder() {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const apiUrl = "https://lyrics-itunes-app.onrender.com/lyrics";
+      const apiUrl = "http://localhost:5000/lyrics";
+      //const apiUrl = "https://lyrics-itunes-app.onrender.com/lyrics";
       const response = await fetch(
-        `${apiUrl}?track=${encodeURIComponent(
-          title
-        )}&artist=${encodeURIComponent(artist)}`
+        `${apiUrl}?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`
       );
       const data = await response.json();
+      console.log(data);
       if (response.ok) {
-        setArtistLyrics(data.message.body.lyrics.lyrics_body);
+        setArtistLyrics(data.lyrics);
         setError(false);
       } else {
         throw new Error("Failed to fetch lyrics");

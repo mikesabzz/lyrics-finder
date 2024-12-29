@@ -15,29 +15,19 @@ app.use((req, res, next) => {
 });
 
 app.get('/lyrics', async (req, res) => {
-  const musixmatchApiUrl = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get';
-  const musicApiKey = apiKey;
-
-  const trackName = req.query.track;
-  const artistName = req.query.artist;
+  const { artist, title } = req.query;
+  
+  if (!artist || !title) {
+    return res.status(400).json({ error: "Artist and title are required" });
+  }
 
   try {
-    const response = await axios.get(musixmatchApiUrl, {
-      params: {
-        format: 'json',
-        q_track: trackName,
-        q_artist: artistName,
-        apikey: musicApiKey,
-      },
-    });
-
+    const response = await axios.get(`https://api.lyrics.ovh/v1/${artist}/${title}`);
     res.json(response.data);
   } catch (error) {
-    console.error('Error fetching lyrics:', error.message);
-    res.status(500).json({ error: 'Failed to fetch lyrics' });
+    res.status(500).json({ error: "Failed to fetch lyrics" });
   }
 });
-
 // Route to fetch iTunes data
 app.get('/itunes', async (req, res) => {
   const artistName = req.query.artist;
