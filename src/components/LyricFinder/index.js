@@ -19,8 +19,8 @@ function LyricFinder() {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const apiUrl = "http://localhost:5000/lyrics";
-      //const apiUrl = "https://lyrics-itunes-app.onrender.com/lyrics";
+      //const apiUrl = "http://localhost:5000/lyrics";
+      const apiUrl = "https://lyrics-itunes-app.onrender.com/lyrics";
       const response = await fetch(
         `${apiUrl}?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`
       );
